@@ -15,13 +15,18 @@
 
 Route::get('/', 'WelcomeController@index');
 
-Auth::routes();
+//Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
+
     Route::get('/home', 'ParticipantsHomePageController@index');
     Route::get('/manage/participants', 'ManageParticipantsController@index');
 
     Route::post('/events/{event}/register', 'RegisterToEventController@store');
+
+    Route::post('/manage/events/{event}/messages', 'ParticipantMessageController@store')
+        ->name('manage.event-message.store');
+
 });
 
 // Administrators

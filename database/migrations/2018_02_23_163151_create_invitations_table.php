@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateParticipantMessagesTable extends Migration
+class CreateInvitationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateParticipantMessagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('participant_messages', function (Blueprint $table) {
+        Schema::create('invitations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('subject');
-            $table->string('message');
-            $table->unsignedInteger('event_id');
+            $table->string('email');
+            $table->string('code');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateParticipantMessagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('participant_messages');
+        Schema::dropIfExists('invitations');
     }
 }

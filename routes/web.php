@@ -15,7 +15,7 @@
 
 Route::get('/', 'WelcomeController@index');
 
-//Auth::routes();
+Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
 

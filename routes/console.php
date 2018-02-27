@@ -1,5 +1,7 @@
 <?php
 
+use App\Facades\InvitationCode;
+use App\Invitation;
 use Illuminate\Foundation\Inspiring;
 
 /*
@@ -15,4 +17,17 @@ use Illuminate\Foundation\Inspiring;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
+})->describe('Display an inspiring quote');
+
+
+Artisan::command('invite-manager {email}', function ($email) {
+
+    Invitation::create([
+        'email' => $email,
+        'code' => InvitationCode::generate()
+    ])->send();
+
+//    send($invitation);
+//    $invitation->send();
+
 })->describe('Display an inspiring quote');

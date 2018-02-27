@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Event;
-use App\Jobs\SendParticipantMessage;
 use App\ParticipantMessage;
 use Illuminate\Http\Request;
 

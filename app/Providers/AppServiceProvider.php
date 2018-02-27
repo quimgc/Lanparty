@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Acacha\User\GuestUser;
+use App\Invitation;
+use App\InvitationCodeGenerator;
+use App\InvitationCodeGeneratorComplex;
+use App\InvitationCodeGeneratorSimple;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
@@ -49,6 +53,22 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(InvitationCodeGenerator::class, function(){
+
+            if(config('codes.type') == 'simple'){
+
+                return new InvitationCodeGeneratorSimple();
+
+            } else if(config('codes.type') == 'complex') {
+
+                return new InvitationCodeGeneratorComplex();
+
+            }else {
+
+                dd('error');
+
+            }
+
+        });
     }
 }
